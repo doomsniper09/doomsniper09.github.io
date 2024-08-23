@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focus Roleplay Spacebar Counter</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('background.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .counter-container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .counter {
+            font-size: 48px;
+            margin: 20px 0;
+        }
+
+        .command-container {
+            margin-top: auto;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            display: none;
+            justify-content: center;
+        }
+
+        .command-prompt {
+            width: 80%;
+            padding: 10px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            outline: none;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .command-prompt::placeholder {
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="counter-container">
+        <h1>Spacebar Counter</h1>
+        <div class="counter" id="counter">0</div>
+    </div>
+
+    <div class="command-container" id="commandContainer">
+        <input type="text" id="command" class="command-prompt" placeholder="Enter command">
+    </div>
+
+    <script>
+        let count = 0;
+        let spacePressed = false;
+
+        document.body.onkeydown = function(e) {
+            if (e.code === "Space" && !spacePressed) {
+                spacePressed = true;
+                count++;
+                document.getElementById('counter').innerText = count;
+            } else if (e.code === "F8") {
+                // Toggle the command prompt visibility
+                const commandContainer = document.getElementById('commandContainer');
+                if (commandContainer.style.display === 'none' || commandContainer.style.display === '') {
+                    commandContainer.style.display = 'flex';
+                    document.getElementById('command').focus();
+                } else {
+                    commandContainer.style.display = 'none';
+                }
+            }
+        }
+
+        document.body.onkeyup = function(e) {
+            if (e.code === "Space") {
+                spacePressed = false;
+            }
+        }
+
+        document.getElementById('command').onkeydown = function(e) {
+            if (e.code === "Enter") {
+                const command = this.value.trim().toLowerCase();
+                if (command === "anonymous") {
+                    window.location.href = "https://www.pornhub.com/";
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
